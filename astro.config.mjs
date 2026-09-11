@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
+  site: 'https://silmotoki-tech.github.io',
+  base: '/nyuta-medicine-guide',
   vite: {
     plugins: [
       {
