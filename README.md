@@ -22,3 +22,5 @@
 ## 開発手順
 
 詳細な開発手順は [`docs/development-plan.md`](docs/development-plan.md) を参照。
+
+AIがCursor上のGrokへ作業指示を書く場合は、先に [`docs/ai-instruction-rules.md`](docs/ai-instruction-rules.md) を確認する。
