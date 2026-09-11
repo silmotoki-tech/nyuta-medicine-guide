@@ -18,3 +18,7 @@
 ## データ
 
 薬剤データの原本は Google スプレッドシート。
+
+## 開発手順
+
+詳細な開発手順は [`docs/development-plan.md`](docs/development-plan.md) を参照。
