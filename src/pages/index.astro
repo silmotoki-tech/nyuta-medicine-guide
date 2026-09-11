@@ -1,5 +1,5 @@
 ---
-
+import { medicines, medicinePath } from '../data/medicines';
 ---
 
 <!DOCTYPE html>
@@ -14,9 +14,11 @@
       <h1>にゅうた動物病院 お薬情報</h1>
       <p>処方されたお薬の名前から、作用・副反応・注意事項をご確認いただけます。</p>
       <ul>
-        <li>アポキル</li>
-        <li>セレニア（マロピタント）</li>
-        <li>ファムシクロビル</li>
+        {medicines.map((medicine) => (
+          <li>
+            <a href={medicinePath(medicine.slug)}>{medicine.listName}</a>
+          </li>
+        ))}
       </ul>
     </main>
   </body>
@@ -55,5 +57,10 @@
     font-size: 1.15rem;
     padding: 0.9rem 0;
     border-bottom: 1px solid #ddd;
+  }
+
+  a {
+    color: #0645ad;
+    text-decoration: none;
   }
 </style>

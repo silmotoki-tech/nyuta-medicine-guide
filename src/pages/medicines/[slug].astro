@@ -1,0 +1,100 @@
+---
+import { homePath, medicines, type Medicine } from '../../data/medicines';
+
+export function getStaticPaths() {
+  return medicines.map((medicine) => ({
+    params: { slug: medicine.slug },
+    props: { medicine },
+  }));
+}
+
+interface Props {
+  medicine: Medicine;
+}
+
+const { medicine } = Astro.props;
+const homeHref = homePath();
+const placeholder = '準備中';
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{medicine.productName}｜にゅうた動物病院 お薬情報</title>
+  </head>
+  <body>
+    <main>
+      <h1>{medicine.productName}</h1>
+      <section>
+        <h2>製品名</h2>
+        <p>{medicine.productName}</p>
+      </section>
+      <section>
+        <h2>一般名</h2>
+        <p>{medicine.genericName}</p>
+      </section>
+      <section>
+        <h2>どのような薬ですか？</h2>
+        <p>{placeholder}</p>
+      </section>
+      <section>
+        <h2>主な副反応</h2>
+        <p>{placeholder}</p>
+      </section>
+      <section>
+        <h2>このような場合は病院へご連絡ください</h2>
+        <p>{placeholder}</p>
+      </section>
+      <section>
+        <h2>使用上の注意</h2>
+        <p>{placeholder}</p>
+      </section>
+      <section>
+        <h2>最終更新日</h2>
+        <p>{placeholder}</p>
+      </section>
+      <p class="back">
+        <a href={homeHref}>トップへ戻る</a>
+      </p>
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    line-height: 1.6;
+  }
+
+  main {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 0 0 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.05rem;
+    margin: 1.25rem 0 0.4rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .back {
+    margin-top: 2rem;
+  }
+
+  a {
+    color: #0645ad;
+  }
+</style>
