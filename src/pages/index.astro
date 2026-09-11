@@ -1,5 +1,7 @@
 ---
-import { medicines, medicinePath } from '../data/medicines';
+import { medicinesByExistingKanaRows, medicinesByReading, medicinePath } from '../data/medicines';
+
+const kanaRows = medicinesByExistingKanaRows();
 ---
 
 <!DOCTYPE html>
@@ -21,18 +23,45 @@ import { medicines, medicinePath } from '../data/medicines';
         placeholder="薬剤名を入力"
       />
       <ul id="medicine-list">
-        {medicines.map((medicine) => (
+        {medicinesByReading.map((medicine) => (
           <li data-search={`${medicine.productName} ${medicine.genericName} ${medicine.listName}`}>
             <a href={medicinePath(medicine.slug)}>{medicine.listName}</a>
           </li>
         ))}
       </ul>
       <p id="no-results" hidden>該当するお薬がありません</p>
+
+      <section class="kana-section">
+        <h2>50音順から探す</h2>
+        {kanaRows.map((row) => (
+          <div class="kana-row">
+            <h3>{row.label}</h3>
+            <ul>
+              {row.medicines.map((medicine) => (
+                <li>
+                  <a href={medicinePath(medicine.slug)}>{medicine.listName}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
     </main>
   </body>
 </html>
 
 <style>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   body {
     margin: 0;
     font-family: sans-serif;
@@ -41,13 +70,25 @@ import { medicines, medicinePath } from '../data/medicines';
 
   main {
     max-width: 40rem;
+    width: 100%;
     margin: 0 auto;
     padding: 1.5rem 1rem 2rem;
   }
 
   h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin: 0 0 1rem;
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin: 0 0 0.75rem;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.25rem;
   }
 
   p {
@@ -64,9 +105,10 @@ import { medicines, medicinePath } from '../data/medicines';
   input[type="search"] {
     display: block;
     width: 100%;
-    box-sizing: border-box;
+    max-width: 100%;
+    min-height: 2.75rem;
     margin-bottom: 1rem;
-    padding: 0.7rem 0.8rem;
+    padding: 0.8rem 0.9rem;
     font-size: 1rem;
   }
 
@@ -78,17 +120,27 @@ import { medicines, medicinePath } from '../data/medicines';
 
   li {
     font-size: 1.15rem;
-    padding: 0.9rem 0;
     border-bottom: 1px solid #ddd;
   }
 
   a {
+    display: block;
     color: #0645ad;
     text-decoration: none;
+    padding: 0.95rem 0;
+    overflow-wrap: anywhere;
   }
 
   #no-results {
     margin-top: 1rem;
+  }
+
+  .kana-section {
+    margin-top: 2.5rem;
+  }
+
+  .kana-row {
+    margin-bottom: 1.25rem;
   }
 </style>
 
