@@ -24,7 +24,7 @@ const kanaRows = medicinesByExistingKanaRows();
       />
       <ul id="medicine-list">
         {medicinesByReading.map((medicine) => (
-          <li data-search={`${medicine.productName} ${medicine.genericName} ${medicine.listName}`}>
+          <li data-search={`${medicine.productName} ${medicine.genericName} ${medicine.listName} ${medicine.reading}`}>
             <a href={medicinePath(medicine.slug)}>{medicine.listName}</a>
           </li>
         ))}
@@ -149,12 +149,18 @@ const kanaRows = medicinesByExistingKanaRows();
   const items = document.querySelectorAll('#medicine-list li');
   const noResults = document.getElementById('no-results');
 
+  function toHiragana(text) {
+    return text.replace(/[\u30A1-\u30F6]/g, (char) =>
+      String.fromCharCode(char.charCodeAt(0) - 0x60)
+    );
+  }
+
   function filterMedicines() {
-    const query = searchInput.value.trim();
+    const query = toHiragana(searchInput.value.trim());
     let visibleCount = 0;
 
     items.forEach((item) => {
-      const haystack = item.getAttribute('data-search') || '';
+      const haystack = toHiragana(item.getAttribute('data-search') || '');
       const isMatch = query === '' || haystack.includes(query);
       item.hidden = !isMatch;
       if (isMatch) {
