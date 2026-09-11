@@ -1,32 +1,39 @@
 export type Medicine = {
   slug: string;
-  productName: string;
-  listName: string;
+  displayName: string;
+  productName?: string;
   genericName: string;
   reading: string;
+  aliases: string[];
+  sourceIds: string[];
 };
 
 export const medicines: Medicine[] = [
   {
     slug: 'apoquel',
+    displayName: 'アポキル',
     productName: 'アポキル',
-    listName: 'アポキル',
-    genericName: '準備中',
+    genericName: 'オクラシチニブ',
     reading: 'あぽきる',
+    aliases: [],
+    sourceIds: ['D201'],
   },
   {
     slug: 'cerenia',
+    displayName: 'セレニア（マロピタント）',
     productName: 'セレニア',
-    listName: 'セレニア（マロピタント）',
     genericName: 'マロピタント',
     reading: 'せれにあ',
+    aliases: [],
+    sourceIds: ['D113', 'D026'],
   },
   {
     slug: 'famciclovir',
-    productName: 'ファムシクロビル',
-    listName: 'ファムシクロビル',
-    genericName: '準備中',
+    displayName: 'ファムシクロビル',
+    genericName: 'ファムシクロビル',
     reading: 'ふぁむしくろびる',
+    aliases: [],
+    sourceIds: ['D096'],
   },
 ];
 
@@ -72,4 +79,16 @@ export function homePath(): string {
 
 export function medicinePath(slug: string): string {
   return withBase(`medicines/${slug}/`);
+}
+
+export function medicineSearchText(medicine: Medicine): string {
+  return [
+    medicine.displayName,
+    medicine.productName,
+    medicine.genericName,
+    medicine.reading,
+    ...medicine.aliases,
+  ]
+    .filter((value): value is string => Boolean(value))
+    .join(' ');
 }

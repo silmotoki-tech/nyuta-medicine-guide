@@ -15,6 +15,8 @@ interface Props {
 const { medicine } = Astro.props;
 const homeHref = homePath();
 const placeholder = '準備中';
+const pageTitle = `${medicine.displayName}｜にゅうた動物病院 お薬情報`;
+const productName = medicine.productName;
 ---
 
 <!DOCTYPE html>
@@ -22,15 +24,17 @@ const placeholder = '準備中';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{medicine.productName}｜にゅうた動物病院 お薬情報</title>
+    <title>{pageTitle}</title>
   </head>
   <body>
     <main>
-      <h1>{medicine.productName}</h1>
-      <section>
-        <h2>製品名</h2>
-        <p>{medicine.productName}</p>
-      </section>
+      <h1>{medicine.displayName}</h1>
+      {productName &&
+        <section>
+          <h2>製品名</h2>
+          <p>{productName}</p>
+        </section>
+      }
       <section>
         <h2>一般名</h2>
         <p>{medicine.genericName}</p>

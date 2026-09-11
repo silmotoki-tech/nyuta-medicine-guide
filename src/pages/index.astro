@@ -1,5 +1,5 @@
 ---
-import { medicinesByExistingKanaRows, medicinesByReading, medicinePath } from '../data/medicines';
+import { medicinesByExistingKanaRows, medicinesByReading, medicinePath, medicineSearchText } from '../data/medicines';
 
 const kanaRows = medicinesByExistingKanaRows();
 ---
@@ -24,8 +24,8 @@ const kanaRows = medicinesByExistingKanaRows();
       />
       <ul id="medicine-list">
         {medicinesByReading.map((medicine) => (
-          <li data-search={`${medicine.productName} ${medicine.genericName} ${medicine.listName} ${medicine.reading}`}>
-            <a href={medicinePath(medicine.slug)}>{medicine.listName}</a>
+          <li data-search={medicineSearchText(medicine)}>
+            <a href={medicinePath(medicine.slug)}>{medicine.displayName}</a>
           </li>
         ))}
       </ul>
@@ -39,7 +39,7 @@ const kanaRows = medicinesByExistingKanaRows();
             <ul>
               {row.medicines.map((medicine) => (
                 <li>
-                  <a href={medicinePath(medicine.slug)}>{medicine.listName}</a>
+                  <a href={medicinePath(medicine.slug)}>{medicine.displayName}</a>
                 </li>
               ))}
             </ul>
