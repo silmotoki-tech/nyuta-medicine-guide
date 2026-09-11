@@ -13,13 +13,21 @@ import { medicines, medicinePath } from '../data/medicines';
     <main>
       <h1>にゅうた動物病院 お薬情報</h1>
       <p>処方されたお薬の名前から、作用・副反応・注意事項をご確認いただけます。</p>
-      <ul>
+      <label for="medicine-search">お薬の名前で探す</label>
+      <input
+        id="medicine-search"
+        type="search"
+        autocomplete="off"
+        placeholder="薬剤名を入力"
+      />
+      <ul id="medicine-list">
         {medicines.map((medicine) => (
-          <li>
+          <li data-search={`${medicine.productName} ${medicine.genericName} ${medicine.listName}`}>
             <a href={medicinePath(medicine.slug)}>{medicine.listName}</a>
           </li>
         ))}
       </ul>
+      <p id="no-results" hidden>該当するお薬がありません</p>
     </main>
   </body>
 </html>
@@ -47,6 +55,21 @@ import { medicines, medicinePath } from '../data/medicines';
     font-size: 1rem;
   }
 
+  label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+  }
+
+  input[type="search"] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    padding: 0.7rem 0.8rem;
+    font-size: 1rem;
+  }
+
   ul {
     list-style: none;
     margin: 0;
@@ -63,4 +86,32 @@ import { medicines, medicinePath } from '../data/medicines';
     color: #0645ad;
     text-decoration: none;
   }
+
+  #no-results {
+    margin-top: 1rem;
+  }
 </style>
+
+<script is:inline>
+  const searchInput = document.getElementById('medicine-search');
+  const items = document.querySelectorAll('#medicine-list li');
+  const noResults = document.getElementById('no-results');
+
+  function filterMedicines() {
+    const query = searchInput.value.trim();
+    let visibleCount = 0;
+
+    items.forEach((item) => {
+      const haystack = item.getAttribute('data-search') || '';
+      const isMatch = query === '' || haystack.includes(query);
+      item.hidden = !isMatch;
+      if (isMatch) {
+        visibleCount += 1;
+      }
+    });
+
+    noResults.hidden = visibleCount > 0;
+  }
+
+  searchInput.addEventListener('input', filterMedicines);
+</script>
