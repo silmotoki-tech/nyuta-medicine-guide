@@ -2,7 +2,7 @@ export type Medicine = {
   slug: string;
   displayName: string;
   productName?: string;
-  genericName: string;
+  genericName?: string;
   reading: string;
   aliases: string[];
   sourceIds: string[];
@@ -289,9 +289,9 @@ export const medicines: Medicine[] = [
   {
     slug: 'fortiflora',
     displayName: 'FortiFlora',
-    genericName: 'FortiFlora',
+    productName: 'FortiFlora',
     reading: 'ふぉーてぃふろーら',
-    aliases: [],
+    aliases: ['フォーティフローラ', 'SF68', 'Enterococcus faecium'],
     sourceIds: ['D122'],
   },
   {
@@ -400,15 +400,15 @@ export const medicines: Medicine[] = [
   {
     slug: 'nephguard',
     displayName: 'ネフガード',
-    genericName: 'ネフガード',
+    productName: 'ネフガード',
     reading: 'ねふがーど',
-    aliases: [],
+    aliases: ['ヘルスカーボン'],
     sourceIds: ['D139'],
   },
   {
     slug: 'welldeli',
     displayName: 'ウエルデリ',
-    genericName: 'ウエルデリ',
+    productName: 'ウエルデリ',
     reading: 'うえるでり',
     aliases: [],
     sourceIds: ['D140'],
@@ -943,7 +943,7 @@ export const medicines: Medicine[] = [
   {
     slug: 'yunnan-baiyao',
     displayName: '雲南白薬',
-    genericName: '雲南白薬',
+    productName: '雲南白薬',
     reading: 'うんなんはくやく',
     aliases: [],
     sourceIds: ['D235'],

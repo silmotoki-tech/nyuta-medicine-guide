@@ -35,10 +35,12 @@ const productName = medicine.productName;
           <p>{productName}</p>
         </section>
       }
-      <section>
-        <h2>一般名</h2>
-        <p>{medicine.genericName}</p>
-      </section>
+      {medicine.genericName &&
+        <section>
+          <h2>一般名</h2>
+          <p>{medicine.genericName}</p>
+        </section>
+      }
       <section>
         <h2>どのような薬ですか？</h2>
         <p>{placeholder}</p>
