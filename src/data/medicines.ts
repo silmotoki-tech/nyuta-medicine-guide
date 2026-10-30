@@ -150,8 +150,9 @@ export const medicines: Medicine[] = [
   },
   {
     slug: 'domenan',
-    displayName: 'ドメナン',
-    genericName: 'ドメナン',
+    displayName: 'ドメナン（オザグレル塩酸塩水和物）',
+    productName: 'ドメナン',
+    genericName: 'オザグレル塩酸塩水和物',
     reading: 'どめなん',
     aliases: [],
     sourceIds: ['D100'],
@@ -279,7 +280,8 @@ export const medicines: Medicine[] = [
   {
     slug: 'delclear',
     displayName: 'デルクリアー',
-    genericName: 'デルクリアー',
+    productName: 'デルクリアー',
+    genericName: 'タンニン酸ベルベリン／ゲンノショウコ末／ロートエキス3倍散／ウルソデオキシコール酸',
     reading: 'でるくりあー',
     aliases: [],
     sourceIds: ['D121'],
@@ -923,8 +925,9 @@ export const medicines: Medicine[] = [
   },
   {
     slug: 'sachiozil',
-    displayName: 'サキオジール',
-    genericName: 'サキオジール',
+    displayName: 'サキオジール（クロルマジノン酢酸エステル）',
+    productName: 'サキオジール',
+    genericName: 'クロルマジノン酢酸エステル',
     reading: 'さきおじーる',
     aliases: [],
     sourceIds: ['D213'],
