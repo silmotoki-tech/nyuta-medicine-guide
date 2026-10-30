@@ -176,15 +176,6 @@ export const medicines: Medicine[] = [
     sourceIds: ['D102'],
   },
   {
-    slug: 'previcox',
-    displayName: 'プレビコックス（フィロコキシブ）',
-    productName: 'プレビコックス',
-    genericName: 'フィロコキシブ',
-    reading: 'ぷれびこっくす',
-    aliases: [],
-    sourceIds: ['D103'],
-  },
-  {
     slug: 'galliprant',
     displayName: 'ガリプラント（グラピプラント）',
     productName: 'ガリプラント',
