@@ -699,14 +699,6 @@ export const medicines: Medicine[] = [
     sourceIds: ['D185'],
   },
   {
-    slug: 'tinidazole',
-    displayName: 'チニダゾール',
-    genericName: 'チニダゾール',
-    reading: 'ちにだぞーる',
-    aliases: [],
-    sourceIds: ['D186'],
-  },
-  {
     slug: 'ronidazole',
     displayName: 'ロニダゾール',
     genericName: 'ロニダゾール',
@@ -829,14 +821,6 @@ export const medicines: Medicine[] = [
     reading: 'じあぞきしど',
     aliases: [],
     sourceIds: ['D202'],
-  },
-  {
-    slug: 'pyridostigmine',
-    displayName: 'ピリドスチグミン',
-    genericName: 'ピリドスチグミン',
-    reading: 'ぴりどすちぐみん',
-    aliases: [],
-    sourceIds: ['D203'],
   },
   {
     slug: 'yubera-n',
