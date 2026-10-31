@@ -17,6 +17,12 @@ const homeHref = homePath();
 const placeholder = '準備中';
 const pageTitle = `${medicine.displayName}｜にゅうた動物病院 お薬情報`;
 const productName = medicine.productName;
+const commonSideEffectsLabel =
+  medicine.commonSideEffectsLabel || 'みられることがある副反応';
+const hasCommonSideEffects = Boolean(medicine.commonSideEffects?.length);
+const hasRareSideEffects = Boolean(medicine.rareSideEffects?.length);
+const hasPrecautions = Boolean(medicine.precautions?.length);
+const hasReferences = Boolean(medicine.references?.length);
 ---
 
 <!DOCTYPE html>
@@ -43,24 +49,62 @@ const productName = medicine.productName;
       }
       <section>
         <h2>どのような薬ですか？</h2>
-        <p>{placeholder}</p>
+        <p>{medicine.description || placeholder}</p>
       </section>
       <section>
-        <h2>主な副反応</h2>
-        <p>{placeholder}</p>
+        <h2>{commonSideEffectsLabel}</h2>
+        {hasCommonSideEffects ? (
+          <ul>
+            {medicine.commonSideEffects?.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>{placeholder}</p>
+        )}
       </section>
-      <section>
-        <h2>このような場合は病院へご連絡ください</h2>
-        <p>{placeholder}</p>
-      </section>
+      {hasRareSideEffects &&
+        <section>
+          <h2>頻度は低いですが、知っておいてほしい副反応</h2>
+          <ul>
+            {medicine.rareSideEffects?.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </section>
+      }
       <section>
         <h2>使用上の注意</h2>
-        <p>{placeholder}</p>
+        {hasPrecautions ? (
+          <ul>
+            {medicine.precautions?.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>{placeholder}</p>
+        )}
       </section>
+      <p class="notice">
+        ここに記載した症状が必ず起こるわけではありません。<br />
+        体調に気になる変化がある場合は、にゅうた動物病院へご相談ください。
+      </p>
       <section>
         <h2>最終更新日</h2>
-        <p>{placeholder}</p>
+        <p>{medicine.lastUpdated || placeholder}</p>
       </section>
+      {hasReferences &&
+        <section>
+          <h2>参考情報</h2>
+          <ul>
+            {medicine.references?.map((reference) => (
+              <li>
+                <a href={reference.url}>{reference.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      }
       <p class="back">
         <a href={homeHref}>トップへ戻る</a>
       </p>
@@ -94,6 +138,15 @@ const productName = medicine.productName;
   p {
     margin: 0;
     font-size: 1rem;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .notice {
+    margin-top: 1.25rem;
   }
 
   .back {

@@ -6,6 +6,16 @@ export type Medicine = {
   reading: string;
   aliases: string[];
   sourceIds: string[];
+  description?: string;
+  commonSideEffectsLabel?: string;
+  commonSideEffects?: string[];
+  rareSideEffects?: string[];
+  precautions?: string[];
+  lastUpdated?: string;
+  references?: {
+    title: string;
+    url: string;
+  }[];
 };
 
 export const medicines: Medicine[] = [
@@ -17,6 +27,26 @@ export const medicines: Medicine[] = [
     reading: 'あぽきる',
     aliases: [],
     sourceIds: ['D201'],
+    description:
+      '犬のアレルギー性皮膚炎やアトピー性皮膚炎に伴うかゆみを抑える薬です。かゆみや炎症に関係する情報伝達を抑えることで症状を和らげます。',
+    commonSideEffectsLabel: 'みられることがある副反応',
+    commonSideEffects: ['嘔吐', '下痢や軟便', '食欲の低下', '元気の低下'],
+    rareSideEffects: [
+      '感染症が悪化することがあります',
+      '皮膚のできものや腫瘤などがみられることがあります',
+    ],
+    precautions: [
+      '自己判断で投薬を中止したり、量や回数を変更しないでください。',
+      '感染症や腫瘍などの治療中の場合は、獣医師の指示に従ってください。',
+      '他の薬やサプリメントを使用している場合はお知らせください。',
+    ],
+    lastUpdated: '2026-10-31',
+    references: [
+      {
+        title: '動物用医薬品等データベース「アポキル錠」',
+        url: 'https://www.vm.nval.go.jp/public/detail/16438',
+      },
+    ],
   },
   {
     slug: 'cerenia',
@@ -26,6 +56,32 @@ export const medicines: Medicine[] = [
     reading: 'せれにあ',
     aliases: [],
     sourceIds: ['D113', 'D026'],
+    description:
+      '吐き気や嘔吐を抑える薬です。嘔吐に関係する神経の働きを抑えることで、吐き気や嘔吐を起こしにくくします。',
+    commonSideEffectsLabel: 'みられることがある副反応',
+    commonSideEffects: [
+      '食欲の低下',
+      '元気がやや低下することがあります',
+      '軟便や下痢',
+      'よだれが増えることがあります',
+    ],
+    rareSideEffects: ['まれに強い体調変化や過敏反応がみられることがあります'],
+    precautions: [
+      '嘔吐の原因そのものを治療する薬ではありません。',
+      '自己判断で投薬を中止したり、量や回数を変更しないでください。',
+      '他の薬を使用している場合はお知らせください。',
+    ],
+    lastUpdated: '2026-10-31',
+    references: [
+      {
+        title: '動物用医薬品等データベース「セレニア錠」',
+        url: 'https://www.vm.nval.go.jp/public/detail/12525',
+      },
+      {
+        title: '動物用医薬品等データベース「セレニア注」',
+        url: 'https://www.vm.nval.go.jp/public/detail/12529',
+      },
+    ],
   },
   {
     slug: 'famciclovir',
@@ -34,6 +90,23 @@ export const medicines: Medicine[] = [
     reading: 'ふぁむしくろびる',
     aliases: [],
     sourceIds: ['D096'],
+    description:
+      '主に猫ヘルペスウイルス感染症の治療に使用する抗ウイルス薬です。ウイルスの増殖を抑え、目や鼻などの症状を改善する目的で使用します。',
+    commonSideEffectsLabel: 'みられることがある副反応',
+    commonSideEffects: ['食欲の低下', '嘔吐', '軟便や下痢などの消化器症状'],
+    rareSideEffects: ['まれに元気の低下などがみられることがあります'],
+    precautions: [
+      '動物用として承認された薬ではありませんが、獣医師の判断で猫の治療に使用することがあります。',
+      '腎臓病などの持病がある場合は投与方法を調整することがあります。',
+      '自己判断で投薬を中止したり、量や回数を変更しないでください。',
+    ],
+    lastUpdated: '2026-10-31',
+    references: [
+      {
+        title: 'ABCD Feline Herpesvirus Guideline',
+        url: 'https://www.abcdcatsvets.org/guideline-for-feline-herpesvirus-infection/',
+      },
+    ],
   },
   {
     slug: 'metronidazole',
